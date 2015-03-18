@@ -67,6 +67,7 @@ public class AWSCredDB {
                 AWSCred awsCred = new AWSCred();
                 awsCred.setId(rs.getLong("id"));
                 awsCred.setAccessKey(rs.getString("access_key"));
+                awsCred.setClientName(rs.getString("client_name"));
                 //awsCred.setSecretKey(EncryptionUtil.decrypt(rs.getString("secret_key")));
                 awsCredList.add(awsCred);
 
@@ -115,6 +116,7 @@ public class AWSCredDB {
                 awsCred.setId(rs.getLong("id"));
                 awsCred.setAccessKey(rs.getString("access_key"));
                 awsCred.setSecretKey(EncryptionUtil.decrypt(rs.getString("secret_key")));
+                awsCred.setClientName(rs.getString("client_name"));
                 awsCredList.add(awsCred);
 
             }
@@ -158,6 +160,7 @@ public class AWSCredDB {
                 awsCred.setId(rs.getLong("id"));
                 awsCred.setAccessKey(rs.getString("access_key"));
                 awsCred.setSecretKey(EncryptionUtil.decrypt(rs.getString("secret_key")));
+                awsCred.setClientName(rs.getString("client_name"));
 
             }
             DBUtils.closeRs(rs);
@@ -200,6 +203,7 @@ public class AWSCredDB {
                 awsCred.setId(rs.getLong("id"));
                 awsCred.setAccessKey(rs.getString("access_key"));
                 awsCred.setSecretKey(EncryptionUtil.decrypt(rs.getString("secret_key")));
+                awsCred.setClientName(rs.getString("client_name"));
 
             }
             DBUtils.closeRs(rs);
@@ -230,10 +234,11 @@ public class AWSCredDB {
 
         try {
             //update
-            PreparedStatement stmt = con.prepareStatement("update aws_credentials set access_key=?, secret_key=? where id=?");
+            PreparedStatement stmt = con.prepareStatement("update aws_credentials set access_key=?, secret_key=?, client_name=? where id=?");
             stmt.setString(1, awsCred.getAccessKey().trim());
             stmt.setString(2, EncryptionUtil.encrypt(awsCred.getSecretKey().trim()));
-            stmt.setLong(3, awsCred.getId());
+            stmt.setString(3, awsCred.getClientName().trim());
+            stmt.setLong(4, awsCred.getId());
             stmt.execute();
 
             DBUtils.closeStmt(stmt);
@@ -288,9 +293,10 @@ public class AWSCredDB {
 
         try {
             //insert
-            PreparedStatement stmt = con.prepareStatement("insert into aws_credentials (access_key, secret_key) values(?,?)");
+            PreparedStatement stmt = con.prepareStatement("insert into aws_credentials (access_key, secret_key, client_name) values(?,?,?)");
             stmt.setString(1, awsCred.getAccessKey().trim());
             stmt.setString(2, EncryptionUtil.encrypt(awsCred.getSecretKey().trim()));
+            stmt.setString(3, awsCred.getClientName().trim());
             stmt.execute();
 
             DBUtils.closeStmt(stmt);

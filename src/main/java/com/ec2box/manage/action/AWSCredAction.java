@@ -87,6 +87,10 @@ public class AWSCredAction extends ActionSupport {
                 awsCred.getSecretKey().trim().equals("")) {
             addFieldError("awsCred.secretKey", "Required");
         }
+        if (awsCred.getClientName() == null ||
+                awsCred.getClientName().trim().equals("")) {
+            addFieldError("awsCred.clientName", "Required");
+        }
         if (!this.hasErrors()) {
             try {
                 //check if credential are valid

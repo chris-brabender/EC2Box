@@ -182,7 +182,7 @@
                                     <s:hidden name="ec2Key.awsCredId" value="%{awsCredList.get(0).getId()}"/>
                                 </s:if>
                                 <s:else>
-                                    <s:select name="ec2Key.awsCredId" list="awsCredList" listKey="id" listValue="accessKey" label="Access Key" />
+                                    <s:select name="ec2Key.awsCredId" list="awsCredList" listKey="id" listValue="clientName" key="accessKey" label="Access Key" />
                                 </s:else>
                                 <s:select name="ec2Key.ec2Region"  list="ec2RegionMap" label="EC2 Region" headerKey="" headerValue="-Select-" onchange="populateKeyNames();" />
                                 <s:select name="ec2Key.keyNm" label="Key Name" list="#{'':'-Select Region Above-'}"/>

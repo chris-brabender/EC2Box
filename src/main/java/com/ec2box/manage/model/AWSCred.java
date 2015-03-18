@@ -24,6 +24,7 @@ public class AWSCred {
     Long id;
     String accessKey;
     String secretKey;
+    String clientName;
 
     public Long getId() { return id; }
 
@@ -45,4 +46,13 @@ public class AWSCred {
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
 }

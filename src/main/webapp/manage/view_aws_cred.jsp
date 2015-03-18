@@ -94,6 +94,7 @@
 
                     <th id="<s:property value="@com.ec2box.manage.db.AWSCredDB@SORT_BY_ACCESS_KEY"/>" class="sort">Access Key
                     </th>
+                    <th>Client</th>
 
                     <th>&nbsp;</th>
                 </tr>
@@ -102,6 +103,7 @@
                 <s:iterator value="sortedSet.itemList" status="stat">
                     <tr>
                         <td><s:property value="accessKey"/></td>
+                        <td><s:property value="clientName"/></td>
                         <td>
                             <div id="del_btn_<s:property value="id"/>" class="btn btn-primary del_btn spacer spacer-left">
                                 Delete
@@ -130,6 +132,7 @@
                             <s:form action="saveAWSCred" class="save_aws_form_add" autocomplete="off">
                                 <s:textfield name="awsCred.accessKey" label="Access Key" size="25" />
                                 <s:password name="awsCred.secretKey" label="Secret Key" size="25" />
+                                <s:textfield name="awsCred.clientName" label="Client Name" size="25" />
                                 <s:hidden name="sortedSet.orderByDirection"/>
                                 <s:hidden name="sortedSet.orderByField"/>
                             </s:form>
